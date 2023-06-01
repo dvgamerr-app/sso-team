@@ -42,7 +42,7 @@
     "eslint-plugin-vue": "9.4.0",
     "prettier": "^2.8.1",
     "sass": "^1.57.1",
-    "sass-loader": "10.3.1",
+    "sass-loader": "13.3.1",
     "scss": "^0.2.4",
     "webpack": "^5.77.0"
   }

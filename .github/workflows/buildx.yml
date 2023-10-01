@@ -77,7 +77,7 @@ jobs:
             --tag ${{github.actor}}/$IMAGE_NAME:$VERSION --file $IMAGE_FILE .
 
       - name: Set up Docker Buildx 📐
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Docker Buildx ⚙️
         run: docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}

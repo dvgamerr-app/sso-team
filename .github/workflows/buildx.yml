@@ -27,7 +27,7 @@ jobs:
       SSO_EXAMPLE_ID: ${{ secrets.SSO_EXAMPLE_ID }}
       SSO_EXAMPLE_REDIRECT: https://sso.touno.io/example
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v3.8.1

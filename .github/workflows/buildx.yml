@@ -27,10 +27,10 @@ jobs:
       SSO_EXAMPLE_ID: ${{ secrets.SSO_EXAMPLE_ID }}
       SSO_EXAMPLE_REDIRECT: https://sso.touno.io/example
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup node env 🏗
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
@@ -40,7 +40,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Cache node_modules 📦
-        uses: actions/cache@v3.0.11
+        uses: actions/cache@v3.3.2
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -77,14 +77,14 @@ jobs:
             --tag ${{github.actor}}/$IMAGE_NAME:$VERSION --file $IMAGE_FILE .
 
       - name: Set up Docker Buildx 📐
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Docker Buildx ⚙️
         run: docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
 
       - name: Login to DockerHub
         if: success() && github.event_name != 'pull_request'
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_TOKEN }}
